@@ -20,12 +20,19 @@ class ViewController: UIViewController {
     func downloadJson() {
         guard let downloadURL = url else { return }
         URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
-            print("downloaded")
             guard let data = data, error == nil, urlResponse != nil else {
                 print("something is wrong")
                 return
             }
-            
+            print("downloaded")
+            do
+            {
+                let decoder = JSONDecoder()
+                let items   = try decoder.decode([Item].self,from: data)
+                print(items)
+            } catch {
+                print("something wrong after downloaded")
+            }
         }.resume()
         
       }
