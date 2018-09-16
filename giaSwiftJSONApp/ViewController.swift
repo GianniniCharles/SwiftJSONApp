@@ -9,17 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    final let url = URL(string: "https://swiftjsonapi.herokuapp.com/api/item/allitems")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        downloadJson()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    func downloadJson() {
+        guard let downloadURL = url else { return }
+        URLSession.shared.dataTask(with: downloadURL){ (data, urlResponse, error) in
+            guard let data = data, error == nil, urlResponse != nil else {
+                print("something is wrong")
+                return
+            }
+            print("downloaded")
+            
+        
+            }
+            .resume()
     }
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
