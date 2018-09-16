@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             {
                 let decoder = JSONDecoder()
                 let items   = try decoder.decode([Item].self,from: data)
-                print(items)
+                print(items[0].title)
             } catch {
                 print("something wrong after downloaded")
             }
