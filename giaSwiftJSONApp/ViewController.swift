@@ -16,21 +16,22 @@ class ViewController: UIViewController {
         downloadJson()
     }
     
-    
+
     func downloadJson() {
         guard let downloadURL = url else { return }
-        URLSession.shared.dataTask(with: downloadURL){ (data, urlResponse, error) in
+        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+            print("downloaded")
             guard let data = data, error == nil, urlResponse != nil else {
                 print("something is wrong")
                 return
             }
-            print("downloaded")
             
+        }.resume()
         
-            }
-            .resume()
+      }
     }
-}
+
+
 
 
 
