@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     final let url = URL(string: "https://swiftjsonapi.herokuapp.com/api/item/allitems")
-    
+    var items:Any = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadJson()
@@ -28,8 +28,12 @@ class ViewController: UIViewController {
             do
             {
                 let decoder = JSONDecoder()
-                let items   = try decoder.decode([Item].self,from: data)
-                print(items[0].title)
+                let downloadedItems   = try decoder.decode([Item].self,from: data)
+                DispatchQueue.main.async() {
+                    items = downloadedItems
+
+                }
+                print(downloadedItems[0].title)
             } catch {
                 print("something wrong after downloaded")
             }
